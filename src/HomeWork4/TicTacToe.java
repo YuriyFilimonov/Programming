@@ -78,6 +78,7 @@ public class TicTacToe {
         int maxWin, lineWin = 0;
         if (sizeMap == 3) maxWin = 3;
         else maxWin = 4;
+
         for (char[] chars : map) {
             for (int i = 0; i < sizeMap; i++){
                 if (chars[i] == symb){
@@ -98,6 +99,20 @@ public class TicTacToe {
                 else lineWin = 0;
             }
         }
+        lineWin = 0;
+
+        for (int i = 0; i <= sizeMap - maxWin; i++){
+            for (int j = 0; j <= sizeMap - maxWin; j++){
+                for (int k = 0; k < maxWin; k++){
+                    if (map[i + k][j + k] == symb){
+                        lineWin++;
+                        if (lineWin == maxWin) return true;
+                    }
+                    else lineWin = 0;
+                }
+            }
+        }
+        lineWin = 0;
 
 //        if (map[0][0] == symb && map[0][1] == symb && map[0][2] == symb) return true;
 //        if (map[1][0] == symb && map[1][1] == symb && map[1][2] == symb) return true;
