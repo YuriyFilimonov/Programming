@@ -103,11 +103,13 @@ public class TicTacToe {
         map[y][x] = DOT_O;
     }
     public static void humanTurn() {
-        int x, y;
+        int x = 0, y = 0;
         do {
             System.out.println("Введите координаты в формате X Y");
-            x = sc.nextInt() - 1;
-            y = sc.nextInt() - 1;
+            String isX = sc.next();
+            if (isDigit(isX)) x = Integer.parseInt(isX) - 1;
+            String isY = sc.next();
+            if (isDigit(isY)) y = Integer.parseInt(isY) - 1;
         } while (!isCellValid(x, y)); // while(isCellValid(x, y) == false)
         map[y][x] = DOT_X;
     }
