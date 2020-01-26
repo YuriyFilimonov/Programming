@@ -75,14 +75,38 @@ public class TicTacToe {
     }
 
     public static boolean checkWin(char symb) {
-        if (map[0][0] == symb && map[0][1] == symb && map[0][2] == symb) return true;
-        if (map[1][0] == symb && map[1][1] == symb && map[1][2] == symb) return true;
-        if (map[2][0] == symb && map[2][1] == symb && map[2][2] == symb) return true;
-        if (map[0][0] == symb && map[1][0] == symb && map[2][0] == symb) return true;
-        if (map[0][1] == symb && map[1][1] == symb && map[2][1] == symb) return true;
-        if (map[0][2] == symb && map[1][2] == symb && map[2][2] == symb) return true;
-        if (map[0][0] == symb && map[1][1] == symb && map[2][2] == symb) return true;
-        if (map[2][0] == symb && map[1][1] == symb && map[0][2] == symb) return true;
+        int maxWin, lineWin = 0;
+        if (sizeMap == 3) maxWin = 3;
+        else maxWin = 4;
+        for (char[] chars : map) {
+            for (int i = 0; i < sizeMap; i++){
+                if (chars[i] == symb){
+                    lineWin++;
+                    if (lineWin == maxWin) return true;
+                }
+                else lineWin = 0;
+            }
+        }
+        lineWin = 0;
+
+        for (int i = 0; i < sizeMap; i++){
+            for (int j = 0; j < sizeMap; j++){
+                if (map[j][i] == symb){
+                    lineWin++;
+                    if (lineWin == maxWin) return true;
+                }
+                else lineWin = 0;
+            }
+        }
+
+//        if (map[0][0] == symb && map[0][1] == symb && map[0][2] == symb) return true;
+//        if (map[1][0] == symb && map[1][1] == symb && map[1][2] == symb) return true;
+//        if (map[2][0] == symb && map[2][1] == symb && map[2][2] == symb) return true;
+//        if (map[0][0] == symb && map[1][0] == symb && map[2][0] == symb) return true;
+//        if (map[0][1] == symb && map[1][1] == symb && map[2][1] == symb) return true;
+//        if (map[0][2] == symb && map[1][2] == symb && map[2][2] == symb) return true;
+//        if (map[0][0] == symb && map[1][1] == symb && map[2][2] == symb) return true;
+//        if (map[2][0] == symb && map[1][1] == symb && map[0][2] == symb) return true;
         return false;
     }
     public static boolean isMapFull() {
