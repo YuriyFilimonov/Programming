@@ -114,16 +114,20 @@ public class TicTacToe {
         }
         lineWin = 0;
 
-//        if (map[0][0] == symb && map[0][1] == symb && map[0][2] == symb) return true;
-//        if (map[1][0] == symb && map[1][1] == symb && map[1][2] == symb) return true;
-//        if (map[2][0] == symb && map[2][1] == symb && map[2][2] == symb) return true;
-//        if (map[0][0] == symb && map[1][0] == symb && map[2][0] == symb) return true;
-//        if (map[0][1] == symb && map[1][1] == symb && map[2][1] == symb) return true;
-//        if (map[0][2] == symb && map[1][2] == symb && map[2][2] == symb) return true;
-//        if (map[0][0] == symb && map[1][1] == symb && map[2][2] == symb) return true;
-//        if (map[2][0] == symb && map[1][1] == symb && map[0][2] == symb) return true;
+        for (int i = 0; i <= sizeMap - maxWin; i++){
+            for (int j = sizeMap - 1; j >= maxWin - 1; j--){
+                for (int k = 0; k < maxWin; k++){
+                    if (map[i + k][j - k] == symb){
+                        lineWin++;
+                        if (lineWin == maxWin) return true;
+                    }
+                    else lineWin = 0;
+                }
+            }
+        }
         return false;
     }
+
     public static boolean isMapFull() {
         for (int i = 0; i < sizeMap; i++) {
             for (int j = 0; j < sizeMap; j++) {
