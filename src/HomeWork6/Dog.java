@@ -10,20 +10,26 @@ public class Dog extends PetAnimal {
     }
 
     @Override
-    protected void run(int lenghtRun) {
-        System.out.printf("Собака %s пробежала %d метров", name, lenghtRun);
+    protected void printAction() {
+        System.out.println(this.toString());
     }
 
     @Override
-    protected void swim(int lenghtSwim) {
-        System.out.printf("Собака %s проплыла %d метров", name, lenghtSwim);
+    protected int setMaxRun() {
+        return MAX_RUN;
+    }
+
+    @Override
+    protected int setMaxSwim() {
+        return MAX_SWIM;
     }
 
     @Override
     public String toString() {
-        return "Dog{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "Dog " +
+                "id " + id +
+                ", name '" + name + '\'' +
+                "run " + getLenRun() +
+                " metres' swim " + getLenSwim() + " meters'.";
     }
 }

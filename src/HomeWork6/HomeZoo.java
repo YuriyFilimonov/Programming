@@ -26,21 +26,12 @@ public class HomeZoo {
         zoo.add(dog3);
 
         for (PetAnimal petAnimal : zoo) {
-            System.out.println(petAnimal.toString());
+            petAnimal.setLenRun(random.nextInt(petAnimal.setMaxRun()+1));
+            petAnimal.setLenSwim(random.nextInt(petAnimal.setMaxSwim()+1));
         }
 
-        int lenRun, maxRun;
-        int lenSwim, maxSwim;
         for (PetAnimal petAnimal : zoo) {
-            if (petAnimal instanceof Cat){
-                maxRun = ((Cat)petAnimal).MAX_RUN;
-                maxSwim = ((Cat)petAnimal).MAX_SWIM;
-            } else {
-                maxRun = ((Dog)petAnimal).MAX_RUN;
-                maxSwim = ((Dog)petAnimal).MAX_SWIM;
-            }
-            petAnimal.setLenRun(random.nextInt(maxRun));
-            petAnimal.setLenRun(random.nextInt(maxSwim));
+            petAnimal.printAction();
         }
     }
 }

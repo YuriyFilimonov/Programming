@@ -11,8 +11,9 @@ public abstract class PetAnimal {
         this.name = name;
     }
 
-    protected abstract void run(int lenghtRun);
-    protected abstract void swim(int lenghtSwim);
+    protected abstract void printAction();
+    protected abstract int setMaxRun();
+    protected abstract int setMaxSwim();
 
     public int getLenRun() {
         return lenRun;
