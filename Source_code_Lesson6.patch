@@ -1,0 +1,256 @@
+Index: src/Lesson6/TestLesson6.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Lesson6/TestLesson6.java	(date 1580456382317)
++++ src/Lesson6/TestLesson6.java	(date 1580456382317)
+@@ -0,0 +1,48 @@
++package Lesson6;
++
++public class TestLesson6 {
++
++    public static void main(String[] args) {
++//        Animal animal = new Animal("Имя животного", "Красный", 30);
++//        Cat cat = new Cat("Барсик", "Белый", 3,  3);
++        Cat cat = new Cat("Барсик", "Белый", 3,  3);
++//        Dog dog = new Dog("Шарик", "Черный", 5,  1);
++//        dog.jump();
++        Dog dog = new Dog("Шарик", "Черный", 5,  1);
++//        ( (Dog) dog).jump();
++
++//        dog.voice();
++
++//        Object[] animals = {cat, dog};
++
++        printVoices(cat, dog);
++
++//        cat.printInfo();
++//        dog.printInfo();
++
++//        animal.printInfo();
++//        System.out.println("-----");
++//        cat.catInfo();
++//        cat.printInfo();
++//        System.out.println("-----");
++//        dog.dogInfo();
++//
++//        animal.voice();
++//        System.out.println("-----");
++//        cat.voice();
++//        System.out.println("-----");
++//        dog.voice();
++    }
++
++    private static void printVoices(Animal... animals) {
++        for (Animal animal : animals) {
++            animal.voice();
++        }
++    }
++
++    private static void printVoices(Object... animals) {
++        for (Object animal : animals) {
++            System.out.println(animal.toString());
++        }
++    }
++}
+Index: src/Lesson6/PetAnimal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Lesson6/PetAnimal.java	(date 1580456310437)
++++ src/Lesson6/PetAnimal.java	(date 1580456310437)
+@@ -0,0 +1,11 @@
++package Lesson6;
++
++public abstract class PetAnimal extends Animal  {
++    public PetAnimal(String name, String color, int age) {
++        super(name, color, age);
++    }
++
++    public void test(int a) {
++
++    };
++}
+\ No newline at end of file
+Index: src/Lesson6/Dog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Lesson6/Dog.java	(date 1580456240912)
++++ src/Lesson6/Dog.java	(date 1580456240912)
+@@ -0,0 +1,48 @@
++package Lesson6;
++
++public class Dog extends PetAnimal {
++
++    private int heightJump;
++
++    public Dog(String name, String color, int age, int heightJump) {
++        super(name, color, age);
++        this.heightJump = heightJump;
++    }
++
++    public Dog(String name, String color, int age) {
++        this(name, color, age, 0);
++    }
++
++    public int getHeightJump() {
++        return heightJump;
++    }
++
++    public void setHeightJump(int heightJump) {
++        this.heightJump = heightJump;
++    }
++
++    public void jump() {
++        System.out.println("Собака прыгнала на высоту " + getHeightJump());
++    }
++
++    @Override
++    public void printInfo() {
++        System.out.printf("Кличка = %s; Цвет = %s; Возраст = %d; Высота прыжка = %d%n",
++                getName(),
++                getColor(),
++                getAge(),
++                getHeightJump());
++    }
++
++    @Override
++    public void voice() {
++        System.out.println("Собака сказала 'Гав!'");
++    }
++
++    @Override
++    public String toString() {
++        return "Dog{" +
++                "heightJump=" + heightJump +
++                '}';
++    }
++}
+\ No newline at end of file
+Index: src/Lesson6/Animal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Lesson6/Animal.java	(date 1580456108154)
++++ src/Lesson6/Animal.java	(date 1580456108154)
+@@ -0,0 +1,53 @@
++package Lesson6;
++
++public abstract class Animal {
++
++    protected String name;
++    private String color;
++    private int age;
++
++    public Animal(String name, String color, int age) {
++        this.name = name;
++        this.color = color;
++        this.age = age;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public String getColor() {
++        return color;
++    }
++
++    public void setColor(String color) {
++        this.color = color;
++    }
++
++    public int getAge() {
++        return age;
++    }
++
++    public void setAge(int age) {
++        this.age = age;
++    }
++
++    public void printInfo() {
++//        System.out.println(this);
++        System.out.printf("Кличка = %s; Цвет = %s; Возраст = %d%n",
++                getName(),
++                getColor(),
++                getAge());
++    }
++
++    public abstract void voice();
++
++    @Override
++    public String toString() {
++        return "Animal{" +
++                "name='" + name + '\'' +
++                ", color='" + color + '\'' +
++                ", age=" + age +
++                '}';
++    }
++}
+\ No newline at end of file
+Index: src/Lesson6/Cat.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Lesson6/Cat.java	(date 1580456191002)
++++ src/Lesson6/Cat.java	(date 1580456191002)
+@@ -0,0 +1,52 @@
++package Lesson6;
++
++public class Cat extends PetAnimal {
++
++    //    private String name;
++    private int weight;
++
++    public Cat(String name, String color, int age, int weight) {
++        super(name, color, age);
++        this.weight = weight;
++//        this.name = super.name;
++    }
++
++    public Cat(String name, String color, int age) {
++        this(name, color, age, 0);
++    }
++
++    public int getWeight() {
++        return weight;
++    }
++
++    public void setWeight(int weight) {
++        this.weight = weight;
++    }
++
++    @Override
++    public void printInfo() {
++        System.out.printf("Кличка = %s; Цвет = %s; Возраст = %d; Вес = %d%n",
++                getName(),
++                getColor(),
++                getAge(),
++                getWeight());
++    }
++
++    @Override
++    public void voice() {
++//        super.voice();
++        System.out.println("Кот сказал 'Мяу!'");
++    }
++
++    @Override
++    public String toString() {
++        return "Cat{" +
++                "weight=" + weight +
++                '}';
++    }
++
++
++    public void test(int a, int b) {
++        super.test(a);
++    }
++}
+\ No newline at end of file
