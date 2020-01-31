@@ -1,12 +1,11 @@
 package HomeWork6;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class HomeZoo {
-    public static Scanner scanner = new Scanner(System.in);
     public static Random random = new Random();
     public static void main(String[] args) {
 
@@ -24,6 +23,8 @@ public class HomeZoo {
         zoo.add(dog1);
         zoo.add(dog2);
         zoo.add(dog3);
+
+//        List<PetAnimal> petAnimals = new Arrays.asList(cat1, cat2, cat3, dog1, dog2, dog3);
 
         for (PetAnimal petAnimal : zoo) {
             petAnimal.setLenRun(random.nextInt(petAnimal.setMaxRun()+1));
