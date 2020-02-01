@@ -25,11 +25,19 @@ public class HomeZoo {
         zoo.add(dog3);
 
 //        List<PetAnimal> petAnimals = new Arrays.asList(cat1, cat2, cat3, dog1, dog2, dog3);
-
+        int countCat, coutnDog;
+        countCat = coutnDog = 0;
         for (PetAnimal petAnimal : zoo) {
             petAnimal.setLenRun(random.nextInt(petAnimal.setMaxRun()+1));
             petAnimal.setLenSwim(random.nextInt(petAnimal.setMaxSwim()+1));
+            if (petAnimal instanceof Cat) {
+                countCat++;
+            } else {
+                coutnDog++;
+            }
         }
+        System.out.println("В домашнем зоопарке всего: " + zoo.size() + " животных, в том числе " + countCat
+                + " кошек и " + coutnDog + " собак.");
 
         for (PetAnimal petAnimal : zoo) {
             petAnimal.printAction();
