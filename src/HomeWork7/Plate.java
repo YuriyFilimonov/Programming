@@ -1,15 +1,15 @@
 package HomeWork7;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Plate {
     Scanner scanner = new Scanner(System.in);
+    Random random = new Random();
+    private int capacityFood; //Вместимость тарелки
     private int food;
-    public int capacityFood; //Вместимость тарелки
-
-    public Plate(int capacityFood) {
-        this.capacityFood = capacityFood;
-    }
+    final int MIN_CAPACITY = 300; //Минимальная и максимальная вместимость тарелки
+    final int MAX_CAPASITY = 1000;
 
     public int getFood() {
         return food;
@@ -19,22 +19,33 @@ public class Plate {
         this.food = food;
     }
 
+    public void getCapacityFood() {
+        capacityFood = MIN_CAPACITY + random.nextInt(MAX_CAPASITY - MIN_CAPACITY);
+    }
+
     public void plateInfo(){
-        System.out.printf("Вместимость тарелки: %d грамм, количество еды в тарелке: %d грамм", capacityFood, food);
+        System.out.printf(toString() + "%n");
+    }
+
+    @Override
+    public String toString() {
+        return "Plate{" +
+                "capacityFood=" + capacityFood +
+                ", food=" + food +
+                '}';
     }
 
     public void addFood(){
         do {
-            System.out.printf("Котик %s хочет кушать, положите корм в тарелку не более %d граммов: ", capacityFood);
-//        System.out.println("Хозяйка добавила корм в тарелку: " + (capacityFood - food) + " грамм");
+            System.out.printf("Котики хотят кушать, положите корм в тарелку не более %d граммов: ", capacityFood);
             String fd = scanner.next();
             isDigit(fd);
             if (isDigit(fd)) food = Integer.parseInt(fd);
-//            return food;
         } while (food < 0 || food > capacityFood);
+        System.out.print(toString());
     }
 
-    private static boolean isDigit(String s) throws NumberFormatException {
+    public static boolean isDigit(String s) throws NumberFormatException {
         try {
             Integer.parseInt(s);
             return true;
