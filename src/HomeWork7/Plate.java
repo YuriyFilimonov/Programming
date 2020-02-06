@@ -13,18 +13,28 @@ public class Plate {
 
     public int getFood() {
         return food;
-    }
+    } //Еду получают из тарелки
 
     public void setFood(int food) {
         this.food = food;
-    }
+    } //Еда поступает в тарелку в каком-то количестве
 
     public void getCapacityFood() {
         capacityFood = MIN_CAPACITY + random.nextInt(MAX_CAPASITY - MIN_CAPACITY);
     }
 
+    public void addFood(){ //Хозяин накладывает еду. Количество регулирует сам, хоть по 1 грамму.
+        do {
+            System.out.printf("Котики хотят кушать, положите корм в тарелку не более %d граммов: ", capacityFood);
+            String fd = scanner.next();
+            isDigit(fd);
+            if (isDigit(fd)) food = Integer.parseInt(fd);
+        } while (food < 0 || food > capacityFood);
+        System.out.print(toString());
+    }
+
     public void plateInfo(){
-        System.out.printf(toString() + "%n");
+        System.out.printf(this + "%n");
     }
 
     @Override
@@ -33,16 +43,6 @@ public class Plate {
                 "capacityFood=" + capacityFood +
                 ", food=" + food +
                 '}';
-    }
-
-    public void addFood(){
-        do {
-            System.out.printf("Котики хотят кушать, положите корм в тарелку не более %d граммов: ", capacityFood);
-            String fd = scanner.next();
-            isDigit(fd);
-            if (isDigit(fd)) food = Integer.parseInt(fd);
-        } while (food < 0 || food > capacityFood);
-        System.out.print(toString());
     }
 
     public static boolean isDigit(String s) throws NumberFormatException {

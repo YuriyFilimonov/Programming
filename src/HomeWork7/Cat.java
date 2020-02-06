@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Cat {
     static Random random = new Random();
-    String name;
+    final String name;
     private int appetite;
-    int satiety;
+    private int satiety;
     public static final int MIN_FOOD = 10;
     public static final int MAX_FOOD = 300;
 
@@ -19,7 +19,7 @@ public class Cat {
         appetite = MIN_FOOD + random.nextInt(MAX_FOOD - MIN_FOOD);
     }
 
-
+    //Кот взаимодействует с тарелкой и ее содержимым. В результате взаимодеймтвия меняется количество содержимого.
     public void eat(Plate plate){
         int getFood = plate.getFood();
         if (getFood < appetite - satiety){
