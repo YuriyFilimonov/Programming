@@ -48,7 +48,7 @@ public class Cat {
     }
 
     public void catInfo(){
-        System.out.print(toString());
+        System.out.print(this);
     }
 
     @Override

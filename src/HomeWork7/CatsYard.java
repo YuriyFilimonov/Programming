@@ -32,7 +32,7 @@ public class CatsYard {
             System.out.println(cat.toString());
         }
 
-        plate.addFood(); //Засыпаем в тарелку корм
+        plate.addFood(); //Наполняем тарелку
         System.out.println();
 
         System.out.println("Покормим котят.");
