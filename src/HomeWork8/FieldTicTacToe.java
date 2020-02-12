@@ -2,14 +2,14 @@ package HomeWork8;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 public class FieldTicTacToe extends JFrame {
     Random random = new Random();
     ButtonX buttonX;
+    ButtonO buttonO;
     JPanel jPanelButton, jPanelText;
+    int zero;
 
     public FieldTicTacToe() {
 
@@ -43,13 +43,21 @@ public class FieldTicTacToe extends JFrame {
                 jButton.setText(null);
                 buttonX = new ButtonX();
                 jButton.add(buttonX);
-                int zero = random.nextInt(jb.length);
-                if (jb[zero].getText().equals("•")){
-                    jb[zero].setText(null);
+                try {
+                    while (true) {
+                        zero = random.nextInt(jb.length);
+                        if (jb[zero].getText().equals("•")){
+                            jb[zero].setText(null);
+                            buttonO = new ButtonO();
+                            jb[zero].add(buttonO);
+                            return ;
+                        }
+                    }
+                } catch (NullPointerException e1) {
+                    System.out.println("Ошибка");
                 }
-            });
+           });
         }
-
     }
 
     public static void main(String[] args) {
