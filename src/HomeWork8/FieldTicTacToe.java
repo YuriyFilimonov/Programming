@@ -60,16 +60,16 @@ public class FieldTicTacToe extends JFrame {
 //                    System.exit(0); Приложение закрывается
                 }
 
-                ++counter;
-                if(counter == 9){
+                if(++counter == 9){
                     jTextField.setText("Draw, cells ended.");
+                    return;
                 }
 
                 while (true) {
                     zero = random.nextInt(jb.length);
                     if (!(jb[zero].getText().equals(X)) && !(jb[zero].getText().equals(O))) {
                         jb[zero].setText(O);
-                        counter++;
+                        ++counter;
                         counterCells(jTextField);
                         buttonO = new ButtonO();
                         jb[zero].add(buttonO);
