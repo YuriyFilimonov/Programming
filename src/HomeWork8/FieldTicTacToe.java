@@ -2,6 +2,7 @@ package HomeWork8;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 import java.util.Random;
 
 public class FieldTicTacToe extends JFrame {
@@ -41,43 +42,44 @@ public class FieldTicTacToe extends JFrame {
         jPanelText.add(jTextField);
         setVisible(true);
 
-//        Обработаем событие нажатие левой кнопкой мыши на кнопку
-        for (JButton jButton : jb) {
-            jButton.addActionListener(e -> {
+// Обработаем событие нажатие левой кнопкой мыши на кнопку. Цикл ForEach работает не корректно: на ничьей зависает.
+// Arrays.stream(jb).forEach не зависает.
+        Arrays.stream(jb).forEach(jButton -> jButton.addActionListener(e -> {
+            if (checkWin(jb, O)) {
+                jTextField.setText("AI Win");
+                return;
+//                    System.exit(0); Приложение закрывается
+            }
+
                 jButton.setText(X);
-                counterCells(jTextField);
-                buttonX = new ButtonX();
-                jButton.add(buttonX);
+            counterCells(jTextField);
+            buttonX = new ButtonX();
+            jButton.add(buttonX);
 
-                if (checkWin(jb, O)) {
-                    jTextField.setText("AI Win");
-                    return;
+            if (checkWin(jb, X)) {
+                jTextField.setText("Player Win");
+                return;
 //                    System.exit(0); Приложение закрывается
-                }
-                else if (checkWin(jb, X)) {
-                    jTextField.setText("Player Win");
-                    return;
-//                    System.exit(0); Приложение закрывается
-                }
+            }
 
-                if(++counter == 9){
-                    jTextField.setText("Draw, cells ended.");
+// Все клетки заяняты, ничья.
+            if (++counter == 9) {
+                jTextField.setText("Draw, cells ended.");
+                return;
+            }
+
+            while (true) {
+                zero = random.nextInt(jb.length);
+                if (!(jb[zero].getText().equals(X)) && !(jb[zero].getText().equals(O))) {
+                    jb[zero].setText(O);
+                    ++counter;
+                    counterCells(jTextField);
+                    buttonO = new ButtonO();
+                    jb[zero].add(buttonO);
                     return;
                 }
-
-                while (true) {
-                    zero = random.nextInt(jb.length);
-                    if (!(jb[zero].getText().equals(X)) && !(jb[zero].getText().equals(O))) {
-                        jb[zero].setText(O);
-                        ++counter;
-                        counterCells(jTextField);
-                        buttonO = new ButtonO();
-                        jb[zero].add(buttonO);
-                        return;
-                    }
-                }
-            });
-        }
+            }
+        }));
     }
 
     private void counterCells(JTextField jTextField) {
